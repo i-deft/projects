@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends "products/base.html" %}
+{% load bootstrap}
+<html lang="en">
+<head>
+  {% block header %}
+  <title>Грайт - О компании </title>
+  {% endblock header %}
+</head>
+
+
+{% block content %}
+<body>
+    
+
+    <div class="container">
+    <h1 class="mt-4 mb-3">О компании
+        
+      </h1>
+      {% if company %}
+      <div class="row">
+        <div class="col-lg-6">
+            {% for comp in company %}
+            
+                <p>{{comp.company|safe}}</p>
+               </div>
+                            
+        <div class="col-lg-6">
+              
+          <img class="img-fluid rounded mb-4" src="{{comp.photo.url}}" alt="фото компании">
+        </div>
+    </div>
+        {% endfor %}
+        {% endif %}
+        
+        {% if laboratory %}
+      <div class="row">
+        <div class="col-lg-6">
+            {% for lab in laboratory %}
+          <img class="img-fluid rounded mb-4" src="{{lab.photo.url}}" alt="фото лаборатории">
+        </div>
+                      
+        <div class="col-lg-6">
+          <p>{{lab.lab|safe}}</p>
+         </div>
+            {% endfor %}
+            {% endif %}
+      </div>
+      {% if production %}
+     <div class="row">
+        <div class="col-lg-6">
+            {% for prod in production %}
+            
+                <p>{{prod.production|safe}}</p>
+               </div>
+                            
+        <div class="col-lg-6">
+              
+          <img class="img-fluid rounded mb-4" src="{{prod.photo.url}}" alt="фото производства">
+        </div>
+      </div>
+        {% endfor %}
+        {% endif %}
+
+  </div>
+  
+</body>
+{% endblock content %}
+</html>
+
+
+

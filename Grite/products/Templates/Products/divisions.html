@@ -1,0 +1,62 @@
+{% extends "products/base.html" %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    {% block header %}
+    <title>Грайт - Направления</title>
+    {% endblock header %}
+</head>
+    {% block content %}
+
+<body>
+    
+      <div class="container">     
+        <h1 class="mt-4 mb-3"> Направления</h1>
+       
+        {% for division in divisions_names %}
+            
+        <div class="row">
+            <div class="col-md-7">
+                <a href="{% url 'products:division' division.slug %}">
+                    <img class="img-fluid rounded mb-3 mb-md-0" src="{{division.photo.url}}" alt="{{division.name}}" width="700" height="300">
+                </a>
+            </div>
+
+            <div class="col-md-5">
+                 <h3>{{division.name}}</h3>
+                 {% if division.description %}
+                    <p>{{division.description|safe}}</p>
+                {% endif %}
+          
+                <a class="btn btn-primary" href="{% url 'products:division' division.slug %}"> Подробнее
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+        <hr>  
+               
+                  
+            {% empty %}
+                </h3>Ещё ни одно направление не показано</h3>
+            {% endfor %}
+             
+
+        
+    
+    
+        </div>
+    </div>
+
+</body>
+{% endblock content %}
+</html>
+
+

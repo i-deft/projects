@@ -1,0 +1,59 @@
+{% extends "products/base.html" %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load embed_video_tags %}
+{% load static %}
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block header %}
+    <title>Грайт - {{division_name}}</title>
+    {% endblock header %}
+    
+    
+</head>
+{% block content %}
+
+<body>
+  <div class="container">
+    <h1 class="mt-4 mb-3"> 
+      {{division_name.name}}   
+    </h1>
+    {% if reagents_names %}
+    
+
+    <div class="row">
+      {% for reagent in reagents_names %}
+      <div class="col-lg-6 portfolio-item">
+          <div class="card h-100">
+            <a href="{% url 'products:reagent' division_name.slug reagent.slug %}"><img class="card-img-top" src="{{reagent.main_photo.url}}" alt="{{reagent.name}}" width="700" height="400"></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                {{reagent.name}}
+              </h4>
+                <p class="card-text">{{reagent.short_description|safe}}</p>
+                <div class="card-footer">
+                  <a href="{% url 'products:reagent' division_name.slug reagent.slug %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+        
+       
+        {% endif%}
+
+        
+  </div>
+
+</body>
+{% endblock content %}
+</html>
+
+

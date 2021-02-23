@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "products/base.html" %}
+{% load bootstrap}
+<html lang="en">
+
+
+
+{% block content %}
+<body>
+
+<div class="container">
+    <h1 class="mt-4 mb-3">Вы успешно отправили запрос. Вернуться на <a href="{% url 'about:index' %}">Главную</a>
+        
+      </h1>
+</div>
+</body>
+{% endblock content %}

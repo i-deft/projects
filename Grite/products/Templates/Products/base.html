@@ -1,0 +1,78 @@
+{% load static %}
+{% load bootstrap4%}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="//d.cdn1.cc/site/1313/1313499/favicon.png?1" type="image/png" rel="shortcut icon">
+    {% block header %}{% endblock header %}
+    
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'about:index' %}">Главная</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" 
+          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">        
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about:about' %}">О компании</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'products:divisions' %}">Направления</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Реагенты
+                </a>
+                
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                  {% for division in divisions %}
+                  <a class="dropdown-item" href="{% url 'products:division' division.slug %}">{{division.name}}</a>
+                  {% endfor %}
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about:contacts' %}">Контакты</a>
+              </li>
+            </ul>
+                
+         </div>
+              
+            
+            
+     </div>
+        
+    </nav>
+     
+    {% block content %}{% endblock content %}
+    <footer class="py-5 bg-dark">
+      <div class="container"> 
+        <div class="row">
+        <div class="col-lg-6 mb-1">
+          <p class="m-0 text-left text-white"> {{contact_info.contact_mail}} </p>
+        </div>
+        <div class="col-lg-6 mb-1">
+          <p class="m-0 text-right text-white"> {{contact_info.contact_phone}} </p>
+          {% if contact_info.contact_phone2 %}
+          <p class="m-0 text-right text-white"> {{contact_info.contact_phone2}} </p>
+          {% endif %}
+        </div>
+      </div>
+      </div>
+       
+      
+    
+    </footer>
+ 
+</body>
+</html>

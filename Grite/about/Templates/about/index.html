@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+{% extends "products/base.html" %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load static %}
+
+
+
+<html lang="en">
+{% block header %}
+<title>Грайт - Производство химических реагентов </title>
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="Обводнение, ликвидация, грайт, глушение, бурение, ремонт, методы_ликвидации_поглощений, химия, 
+поглощений, водонабухающие, цементирование, составы, цемент, тампонажный">
+<meta name="description" content="Компания «ГРАЙТ» за все время своей работы зарекомендовала себя как  ответственный и надежный партнер!
+
+Мы разрабатываем, производим, поставляем химическую продукцию востребованную при строительстве и ремонте скважин, а также в теплоэнергетике.
+
+Вся поставляемая продукция обеспечивается инженерным сопровожением и рекомендациями.
+
+Основная наша миссия - сделать химические технологии эффективнее, проще и доступнее.">
+
+{% endblock header %}
+
+{% block content %}
+
+<body>
+ 
+  
+{% if main_page_photos %}
+     
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active" style="background-image: url('{{main_page_photo_latest.photo.url}}')">
+        <div class="carousel-caption d-none d-md-block">
+          {% if main_page_photo_latest.slogan %}
+            <h3>{{main_page_photo_latest.slogan}}</h3>
+          {% endif %}
+          {% if main_page_photo_latest.description %}
+            <p>{{main_page_photo_latest.description}}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% for main_photo in main_page_photos %}
+      <div class="carousel-item" style="background-image: url('{{main_photo.photo.url}}')">
+        <div class="carousel-caption d-none d-md-block">
+          {% if main_photo.slogan %}
+            <h3>{{main_photo.slogan}}</h3>
+          {% endif %}
+          {% if main_photo.description %}
+            <p>{{main_photo.description}}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+     </div>
+      
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Следующий</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Предыдущий</span>
+    </a>
+  </div>
+
+{% endif %}
+
+
+{% if main_page_photo %}
+<style>
+  #main_photo {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+<section id="main_photo" style="background-image: url('{{main_page_photo.photo.url}}')">
+  <div class="carousel-caption d-none d-md-block">
+    {% if main_page_photo.slogan %}
+      <h3>{{main_page_photo.slogan}}</h3>
+    {% endif %}
+    {% if main_page_photo.description %}
+      <p>{{main_page_photo.description}}</p>
+    {% endif %}
+  </div>
+  
+</section>
+
+{% endif %}
+<div class="container">
+  {% if descriptions %}
+  <div class="row">
+    {% for description in descriptions %}
+    <div class="col-lg-12">    
+      <p>{{description.description|safe}}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  {% if divisions %}
+
+  <h1 class="my-4">Направления работ</h1>
+  <div class="row" >
+    {% for division in divisions %}
+    <div class="col-lg-6 mb-2" >
+      <div class="card h-100">
+      <a href="#"><img class="card-img-top" src="{{division.photo.url}}" alt="{{division.name}}" width="700" height="300"></a> 
+      <div class="card-body">
+        <h4 class="card-title">
+          <a href="{% url 'products:division' division.slug %}">{{division.name}}</a>
+        </h4>
+        
+      </div>
+      
+    </div>
+  </div>
+  {% endfor %}
+  </div> 
+  
+
+  
+  {% endif %}
+  {% if advantages %}
+     
+  <h1 class="my-4">Наши преимущества</h1>
+
+    
+        
+    <div class="row" >
+        {% for advantage in advantages %} 
+        <div class="col-lg-6 mb-2" >
+            
+            <div class="card h-100">
+              <h4 class="card-header">{{advantage.title|safe}}</h4>
+              <div class="card-body">
+                <p class="card-text">{{advantage.adv|safe}}</p>
+              </div>
+              
+            </div>
+            
+            
+          </div> 
+          {% endfor %}            
+        </div>    
+
+
+
+</div>
+{% endif %}
+  
+
+
+
+</body>
+{% endblock content %}
+
+</html>
+
+

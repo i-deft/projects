@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "products/base.html" %}
+{% load bootstrap}
+<html lang="en">
+
+
+
+{% block content %}
+<body>
+
+<div class="container">
+    <h1 class="mt-4 mb-3">Ошибка 404. Запрашиваемая страница не найдена. Вернуться на <a href="{% url 'about:index' %}">главную</a>
+        
+      </h1>
+</div>
+</body>
+{% endblock content %}
