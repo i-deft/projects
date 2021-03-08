@@ -1,0 +1,39 @@
+{% extends "loader/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% block content %}
+
+<body>
+    <form action="{% url 'loader:index' %}" class="dropzone" id="myDropzone" method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="fallback">
+            <input name="{{form.image.field.widget.input_type}}" type="file" multiple />
+        </div>
+     </form>
+    
+    <script>
+Dropzone.options.myDropzone = {
+
+  paramName: "file", // имя переменной, используемой для передачи файлов
+  
+  parallelUploads: 1, //кол-во параллельных обращений к серверу
+  maxFiles: 10, //макс. число файлов в данном контейнере
+  
+};
+    </script>
+
+
+
+
+</body>
+{% endblock content %}
+</html>
