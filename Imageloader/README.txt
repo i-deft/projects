@@ -1,1 +1,1 @@
-Small project with uploading files uzing dropzone or API 
+Small project with uploading images uzing dropzone or API 
