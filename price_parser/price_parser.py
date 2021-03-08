@@ -10,17 +10,17 @@ headers = ({
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
 					  'AppleWebKit/537.36(KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36'
       })
-#предложить серверу считать нас браузером
+
 
 URL = 'https://www.eldorado.ru/'
-#указать главный URL
+#specify main URL
 
 
 def get_html(page):
-	"""Получение страницы"""
+	"""receiving information from page"""
 	url = (f'https://www.eldorado.ru/c/kholodilniki/f/no-frost-v-holodilnoy'
 		   f'-kamere/no-frost-v-morozilnoy-kamere/?f_p=15000:40000&page={page}')
-	#добавить URL адрес с предварительно установленными фильтрами, номер страницы в ссылке заменить на '{page}'
+	#specify the page with the configured filters, where the page number is replaced with '{page}'
 	response = requests.get(url, headers=headers)
 	return response.text
 
@@ -32,7 +32,7 @@ def check_content(html):
 	
 	if contain_items.get_text() == ('Холодильники с No Frost (ноу фрост) в холодильной'
 									' камере с No Frost (ноу фрост) в морозильной камере'):
-	#проверка на основе ключевой фразы, которая отображается на странице
+	#validation based on the keyword that is displayed on the page
 		return True
 	else:
 		return False
@@ -42,7 +42,7 @@ def get_items(html):
 	"""Получение информации с элемента"""
 	soup = BeautifulSoup(html, 'html.parser')
 	items = soup.find_all('div', class_='_39MI3A8')
-	#вставить тип тега и название класса элемента, содержащего цену
+	#insert tag type and element's class name
 	list_items = []
 
 	for item in items:
@@ -58,7 +58,7 @@ def get_items(html):
 
 
 def parse():
-	"""главный цикл"""
+	"""main cycle"""
 	with open('parse.csv', 'a', ) as file:
 		writer = csv.writer(file, delimiter=';')
 		writer.writerow(['Название холодильника', 'Цена', 'Ссылка', datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
