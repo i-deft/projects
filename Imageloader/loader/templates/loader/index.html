@@ -20,15 +20,19 @@
         </div>
      </form>
     
-    <script>
-Dropzone.options.myDropzone = {
 
-  paramName: "file", // имя переменной, используемой для передачи файлов
+     <p>Отправка изображений через API: {% url 'loader:api' %}  </p>
+     <p> key = "file", value = ".jpg, .png, .gif"</p>
+
+    <script>
+        Dropzone.options.myDropzone = {
+
+        paramName: "file",
   
-  parallelUploads: 1, //кол-во параллельных обращений к серверу
-  maxFiles: 10, //макс. число файлов в данном контейнере
+        parallelUploads: 1, 
+        maxFiles: 10, 
   
-};
+    };
     </script>
 
 

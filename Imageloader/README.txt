@@ -1,0 +1,1 @@
+Small project with uploading files uzing dropzone or API 
